@@ -10,9 +10,9 @@ clean-architecture-backend-java
 │   ├── main/
 │   │   ├── java/com/example/demo/
 │   │   │   ├── adapters/
-│   │   │   │   ├── in/
+│   │   │   │   ├── input/
 │   │   │   │   │   └── web/             # Controladores web (puntos de entrada)
-│   │   │   │   └── out/
+│   │   │   │   └── output/
 │   │   │   │       └── persistance/     # Repositorios de base de datos (puntos de salida)
 │   │   │   ├── application/             # Casos de uso
 │   │   │   ├── commons/
