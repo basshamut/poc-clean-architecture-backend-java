@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: clean-architecture-backend-java
+  profiles:
+    active: ${PROFILE_ACTIVE:local}
+  web:
+    resources:
+      add-mappings: false

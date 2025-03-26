@@ -1,13 +1,13 @@
-package com.example.clean_architecture_backend_java;
+package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CleanArchitectureBackendJavaApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CleanArchitectureBackendJavaApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }
