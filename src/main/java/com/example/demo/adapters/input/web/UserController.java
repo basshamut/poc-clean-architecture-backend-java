@@ -1,7 +1,7 @@
 package com.example.demo.adapters.input.web;
 
-import com.example.demo.application.usecase.RegisterUserUseCase;
-import com.example.demo.commons.dto.UserDto;
+import com.example.demo.application.ports.input.RegisterUserUseCase;
+import com.example.demo.adapters.input.web.dto.UserDto;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

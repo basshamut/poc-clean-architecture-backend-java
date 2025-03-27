@@ -1,7 +1,7 @@
-package com.example.demo.commons.mapper;
+package com.example.demo.infrastructure.mapper;
 
 import com.example.demo.adapters.output.persistance.entity.UserEntity;
-import com.example.demo.commons.dto.UserDto;
+import com.example.demo.adapters.input.web.dto.UserDto;
 import com.example.demo.domain.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

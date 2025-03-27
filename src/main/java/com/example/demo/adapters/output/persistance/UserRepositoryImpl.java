@@ -1,13 +1,13 @@
 package com.example.demo.adapters.output.persistance;
 
+import com.example.demo.adapters.input.web.dto.UserDto;
 import com.example.demo.adapters.output.persistance.jpa.JpaUserRepository;
-import com.example.demo.application.repository.UserRepository;
-import com.example.demo.commons.dto.UserDto;
-import com.example.demo.commons.mapper.UserMapper;
+import com.example.demo.application.ports.output.UserRepository;
 import com.example.demo.domain.User;
-import org.springframework.stereotype.Service;
+import com.example.demo.infrastructure.mapper.UserMapper;
+import org.springframework.stereotype.Repository;
 
-@Service
+@Repository
 public class UserRepositoryImpl implements UserRepository {
 
     private final JpaUserRepository jpaUserRepository;

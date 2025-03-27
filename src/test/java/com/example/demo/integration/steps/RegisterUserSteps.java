@@ -1,6 +1,6 @@
 package com.example.demo.integration.steps;
 
-import com.example.demo.commons.dto.UserDto;
+import com.example.demo.adapters.input.web.dto.UserDto;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
