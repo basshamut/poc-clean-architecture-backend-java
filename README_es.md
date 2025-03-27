@@ -6,31 +6,42 @@ Este proyecto demuestra una implementación de arquitectura limpia en una aplica
 
 ```
 clean-architecture-backend-java
+├── init/                                 # Archivos de inicialización
+│   └── create-test-db.sql                # Script SQL para crear la base de datos de pruebas
 ├── src/
 │   ├── main/
 │   │   ├── java/com/example/demo/
-│   │   │   ├── adapters/
-│   │   │   │   ├── input/
-│   │   │   │   │   └── web/             # Controladores web (puntos de entrada)
-│   │   │   │   └── output/
-│   │   │   │       └── persistance/     # Repositorios de base de datos (puntos de salida)
-│   │   │   ├── application/             # Casos de uso
-│   │   │   ├── commons/
-│   │   │   │   ├── dto/                 # Objetos de transferencia de datos
-│   │   │   │   └── mapper/              # Mapeadores de objetos
-│   │   │   ├── config/                  # Clases de configuración
-│   │   │   └── domain/                  # Modelo de dominio
-│   │   └── resources/
-│   │       ├── application.yml          # Configuración principal de la aplicación
-│   │       └── application-local.yml    # Configuración del perfil local
+│   │   │   ├── adapters/                 # Adaptadores que permiten la entrada/salida del sistema
+│   │   │   │   ├── input/                # Adaptadores de entrada (por ejemplo, controladores web)
+│   │   │   │   │   └── web/              # Controladores HTTP (REST)
+│   │   │   │   │       └── dto/          # Objetos de transferencia de datos usados en la capa web
+│   │   │   │   └── output/               # Adaptadores de salida (persistencia, servicios externos)
+│   │   │   │       └── persistance/      # Implementación de la persistencia de datos
+│   │   │   │           └── entity/       # Entidades JPA que representan tablas de la base de datos
+│   │   │   │           └── jpa/          # Repositorios JPA para acceso a la base de datos
+│   │   │   ├── application/              # Lógica de aplicación: casos de uso y orquestación
+│   │   │   │   └── ports/                # Interfaces (puertos) que definen la comunicación entre capas
+│   │   │   │       ├── input/            # Interfaces que representan casos de uso (desde el dominio)
+│   │   │   │       └── output/           # Interfaces de salida que deben implementar los adaptadores
+│   │   │   │   └── service/              # Implementaciones de los casos de uso
+│   │   │   ├── domain/                   # Lógica de negocio pura (modelo de dominio)
+│   │   │   └── infrastructure/           # Configuraciones e integraciones del sistema
+│   │   │       └── config/               # Configuración de Spring (Beans, Security, etc.)
+│   │   │       └── mapper/               # Mappers (MapStruct o manuales) entre DTOs y entidades
+│   │   └── resources/                    # Archivos de configuración y recursos del proyecto
+│   │       ├── application.yml           # Configuración principal del entorno
+│   │       └── application-local.yml     # Configuración específica para entorno local
 │   └── test/
 │       ├── java/com/example/demo/
-│       │   ├── integration/             # Tests de integración con Cucumber
-│       │   └── unit/                    # Tests unitarios
+│       │   ├── integration/              # Pruebas de integración
+│       │   │   └── config/               # Configuración para pruebas de integración
+│       │   │   └── steps/                # Definición de pasos para tests con Cucumber
+│       │   └── unit/                     # Pruebas unitarias de componentes individuales
 │       └── resources/
-│           ├── features/                # Archivos de características de Cucumber
-│           └── application-test.yml     # Configuración del perfil de test
-└── pom.xml                              # Configuración de Maven
+│           ├── features/                 # Archivos .feature de Cucumber para pruebas BDD
+│           └── application-test.yml      # Configuración específica para entorno de test
+├── docker-compose.yml                    # Configuración de Docker para levantar servicios (BD, etc.)
+└── pom.xml                               # Archivo de configuración de Maven
 ```
 
 ## Tecnologías
@@ -54,6 +65,7 @@ Este proyecto implementa la Arquitectura Limpia con un enfoque hexagonal:
 3. **Capa de Adaptadores**:  
    - Adaptadores de entrada: Controladores que reciben peticiones HTTP  
    - Adaptadores de salida: Repositorios para operaciones con la base de datos  
+4. **Capa de Infraestructura**: Configuraciones e integraciones del sistema
 
 ## Primeros Pasos
 

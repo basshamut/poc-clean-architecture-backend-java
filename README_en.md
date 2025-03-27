@@ -6,31 +6,42 @@ This project demonstrates a clean architecture implementation in a Java Spring B
 
 ```
 clean-architecture-backend-java
+├── init/                                 # Initialization files
+│   └── create-test-db.sql                # SQL script to create the test database
 ├── src/
 │   ├── main/
 │   │   ├── java/com/example/demo/
-│   │   │   ├── adapters/
-│   │   │   │   ├── input/
-│   │   │   │   │   └── web/             # Web controllers (entry points)
-│   │   │   │   └── output/
-│   │   │   │       └── persistance/     # Database repositories (exit points)
-│   │   │   ├── application/             # Use cases
-│   │   │   ├── commons/
-│   │   │   │   ├── dto/                 # Data transfer objects
-│   │   │   │   └── mapper/              # Object mappers
-│   │   │   ├── config/                  # Configuration classes
-│   │   │   └── domain/                  # Domain model
-│   │   └── resources/
-│   │       ├── application.yml          # Main application configuration
-│   │       └── application-local.yml    # Local profile configuration
+│   │   │   ├── adapters/                 # Adapters that handle system input/output
+│   │   │   │   ├── input/                # Input adapters (e.g., web controllers)
+│   │   │   │   │   └── web/              # HTTP controllers (REST APIs)
+│   │   │   │   │       └── dto/          # Data Transfer Objects used in the web layer
+│   │   │   │   └── output/               # Output adapters (persistence, external services)
+│   │   │   │       └── persistance/      # Data persistence implementation
+│   │   │   │           └── entity/       # JPA entities representing database tables
+│   │   │   │           └── jpa/          # JPA repositories for database access
+│   │   │   ├── application/              # Application logic: use cases and orchestration
+│   │   │   │   └── ports/                # Interfaces (ports) defining communication between layers
+│   │   │   │       ├── input/            # Input ports representing use cases (called from outside)
+│   │   │   │       └── output/           # Output ports implemented by adapters
+│   │   │   │   └── service/              # Implementations of use cases
+│   │   │   ├── domain/                   # Pure business logic (domain model)
+│   │   │   └── infrastructure/           # System configurations and integrations
+│   │   │       └── config/               # Spring configuration (Beans, Security, etc.)
+│   │   │       └── mapper/               # Mappers (MapStruct or manual) between DTOs and entities
+│   │   └── resources/                    # Project configuration files and static resources
+│   │       ├── application.yml           # Main environment configuration
+│   │       └── application-local.yml     # Configuration for local development environment
 │   └── test/
 │       ├── java/com/example/demo/
-│       │   ├── integration/             # Integration tests with Cucumber
-│       │   └── unit/                    # Unit tests
+│       │   ├── integration/              # Integration tests
+│       │   │   └── config/               # Configurations for integration testing
+│       │   │   └── steps/                # Step definitions for Cucumber BDD tests
+│       │   └── unit/                     # Unit tests for individual components
 │       └── resources/
-│           ├── features/                # Cucumber feature files
-│           └── application-test.yml     # Test profile configuration
-└── pom.xml                              # Maven configuration
+│           ├── features/                 # Cucumber .feature files for BDD scenarios
+│           └── application-test.yml      # Configuration for the test environment
+├── docker-compose.yml                    # Docker setup for services (e.g., database)
+└── pom.xml                               # Maven project configuration file
 ```
 
 ## Technologies
@@ -54,6 +65,7 @@ This project implements Clean Architecture with a hexagonal approach:
 3. **Adapters Layer**:  
    - Input adapters: Controllers receiving HTTP requests  
    - Output adapters: Repositories for database operations  
+4. **Infrastructure Layer**: System configurations and integrations
 
 ## Getting Started
 
